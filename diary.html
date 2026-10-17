@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日記 - 湘南サナトリウムの病室</title>
+<!-- Google Fonts: レトロドットフォント (DotGothic16) 読み込み -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 20px 10px 60px 10px;
+    background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+    font-family: 'DotGothic16', monospace, sans-serif;
+    color: #333;
+    min-height: 100vh;
+  }
+
+  .bg-pattern {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 0);
+    background-size: 16px 16px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* メイン容器 */
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 10;
+  }
+
+  .window-header {
+    background: linear-gradient(90deg, #20b2aa, #008b8b);
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .back-btn {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 2px 8px;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .back-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+
+  .window-body {
+    padding: 16px;
+    background: #fff;
+    margin: 4px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+
+  /* 日記記事エリア */
+  .entry {
+    margin-bottom: 35px;
+    padding-bottom: 25px;
+    border-bottom: 1px dashed #ff69b4;
+  }
+  .entry:last-child {
+    border-bottom: none;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+  }
+  .entry-date {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 4px;
+  }
+  .entry-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #d10068;
+    margin-bottom: 12px;
+  }
+  .entry-content {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* 記事下部のナビゲーション（Prev / Next） */
+  .entry-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .entry-nav a {
+    color: #0000ff;
+    text-decoration: none;
+  }
+  .entry-nav a:hover {
+    text-decoration: underline;
+  }
+
+  /* VIEW ALL ボタン */
+  .footer-nav {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+  }
+  .view-all-btn {
+    display: block;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 6px 0;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: 1px 1px 0px #000;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  .view-all-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+
+<div class="container">
+  <div class="window-header">
+    <span>📖 DIARY - 湘南サナトリウムの病室</span>
+    <a href="index.html" class="back-btn">トップへ戻る</a>
+  </div>
+  <div class="window-body">
+
+    <!-- █ 新しい日記を追加するときは、この「.entry」の塊を一番上にコピペしてね！ -->
+    
+    <!-- 日記記事1（最新） -->
+    <div class="entry">
+      <div class="entry-date">2026.10.18 (Sun)</div>
+      <div class="entry-title">青い海と微熱の午後</div>
+      <div class="entry-content">
+        窓から見える海が、今日はすごく青い。<br>
+        秋の風が少し冷たくなってきて、カーテンが優しく揺れている。<br><br>
+        熱は相変わらず微熱のままで、頭がぽーっとするけれど、この静かな病室で過ごす時間は嫌いじゃない。<br>
+        新しいWebサイト「湘南サナトリウムの病室」をこうして立ち上げることができて、少しだけ気分が良い。<br><br>
+        これからここに、誰にも言えないような小さな出来事や、夜中に考えたこと、読んだ本の話なんかを少しずつ書き残していこうと思う。<br>
+        もしどこかの誰かがこれを見つけて、少しでも穏やかな気持ちになってくれたら嬉しいな。
+      </div>
+      <!-- 記事ごとのPrev/Next -->
+      <div class="entry-nav">
+        <span>← 古い記事</span>
+        <span style="color:#aaa;">新しい記事 →</span>
+      </div>
+    </div>
+
+    <!-- 日記記事2 -->
+    <div class="entry">
+      <div class="entry-date">2026.10.15 (Thu)</div>
+      <div class="entry-title">雨の音と古い本</div>
+      <div class="entry-content">
+        朝からしとしとと雨が降っている。<br>
+        雨の日は外の音が遮断されて、世界に私ひとりだけを取り残されたみたいな気持ちになる。<br><br>
+        枕元に置いてあった古い文庫本を何度も読み返した。<br>
+        ページをめくる音と雨音だけが部屋に響く、とても静かで愛おしい一日だった。
+      </div>
+      <!-- 記事ごとのPrev/Next -->
+      <div class="entry-nav">
+        <a href="#">← 古い記事</a>
+        <a href="#">新しい記事 →</a>
+      </div>
+    </div>
+
+    <!-- VIEW ALL ボタン（トップへ戻る） -->
+    <div class="footer-nav">
+      <a href="index.html" class="view-all-btn">VIEW ALL (TOP)</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
