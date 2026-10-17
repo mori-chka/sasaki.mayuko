@@ -15,13 +15,14 @@
     height: 100vh;
     background: linear-gradient(135deg, #a8c0ff, #3f2b96);
     font-family: 'Courier New', Courier, monospace;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
   }
   
   /* レトロ背景模様 */
   .bg-pattern {
-    position: absolute;
+    position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 0);
     background-size: 16px 16px;
@@ -72,7 +73,7 @@
     border: 2px solid;
     border-color: #ffffff #000000 #000000 #ffffff;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    width: 320px;
+    width: 330px;
     z-index: 20;
   }
 
@@ -83,13 +84,18 @@
     justify-content: space-between;
     align-items: center;
     cursor: move;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     color: #000;
   }
 
   .window-header.blue {
     background: linear-gradient(90deg, #7b68ee, #6a5acd);
+    color: #fff;
+  }
+
+  .window-header.green {
+    background: linear-gradient(90deg, #20b2aa, #008b8b);
     color: #fff;
   }
 
@@ -116,8 +122,38 @@
     margin: 4px;
     border: 2px solid;
     border-color: #808080 #ffffff #ffffff #808080;
-    max-height: 350px;
+    max-height: 380px;
     overflow-y: auto;
+    font-size: 12px;
+  }
+
+  /* タブUI */
+  .tab-container {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 6px;
+    border-bottom: 2px solid #808080;
+  }
+  .tab-btn {
+    background: #dcdcdc;
+    border: 1px solid #808080;
+    border-bottom: none;
+    padding: 3px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .tab-btn.active {
+    background: #fff;
+    border-color: #808080 #808080 #fff #808080;
+    margin-bottom: -2px;
+    padding-bottom: 5px;
+  }
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
   }
 
   /* プロフィール・名前部分 */
@@ -126,9 +162,27 @@
     font-weight: bold;
     font-size: 14px;
     color: #333;
-    margin-bottom: 6px;
-    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+
+  /* アクセスカウンター */
+  .counter-box {
+    text-align: center;
+    font-size: 11px;
+    color: #555;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
     border-bottom: 1px dotted #ff69b4;
+  }
+  .counter-num {
+    display: inline-block;
+    background: #000;
+    color: #ff007f;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    padding: 2px 6px;
+    border: 1px solid #808080;
+    letter-spacing: 2px;
   }
 
   /* メイン画像＆マーキー */
@@ -146,31 +200,47 @@
     padding: 2px;
   }
 
-  /* ニュースリスト */
-  .news-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  /* WEB拍手 */
+  .clap-box {
+    margin-top: 10px;
+    padding: 8px;
+    background: #fff0f5;
+    border: 1px dashed #ff69b4;
+    text-align: center;
+  }
+  .clap-btn {
+    background: #ffb6c1;
+    border: 2px solid;
+    border-color: #ffffff #c71585 #c71585 #ffffff;
+    padding: 4px 12px;
     font-size: 12px;
-  }
-  .news-item {
-    margin-bottom: 10px;
-    border-bottom: 1px dashed #ccc;
-    padding-bottom: 5px;
-  }
-  .news-date {
-    color: #888;
-    font-size: 11px;
-  }
-  .news-title {
     font-weight: bold;
-    color: #000;
-    margin-top: 2px;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  .clap-btn:active {
+    border-color: #c71585 #ffffff #ffffff #c71585;
+  }
+
+  /* 相互リンク・バナー */
+  .link-banner {
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+    background: #000;
+    color: #00ffff;
+    border: 2px solid #ff007f;
+    text-align: center;
+    line-height: 36px;
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: none;
+    margin: 4px 0;
   }
 
   /* タスクバー */
   .taskbar {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -183,45 +253,44 @@
     padding: 2px 4px;
     z-index: 100;
   }
-
   .taskbar-left {
     display: flex;
     gap: 4px;
+    flex-wrap: wrap;
   }
-
   .task-btn {
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
-    padding: 3px 8px;
-    font-size: 12px;
+    padding: 2px 6px;
+    font-size: 11px;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 4px;
     cursor: pointer;
   }
   .task-btn:active {
     border-color: #808080 #ffffff #ffffff #808080;
   }
-
   .clock-box {
     background: #c0c0c0;
     border: 2px solid;
     border-color: #808080 #ffffff #ffffff #808080;
     padding: 3px 8px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
   }
 
-  /* 初期位置 */
-  #win1 { top: 70px; left: 20px; }
-  #win2 { top: 250px; left: 40px; }
+  /* 初期位置設定 */
+  #win1 { top: 60px; left: 15px; }
+  #win2 { top: 120px; left: 360px; }
+  #win3 { top: 460px; left: 15px; }
+  #win4 { top: 480px; left: 360px; }
 
-  @media (max-width: 480px) {
-    .window { width: 280px; }
+  @media (max-width: 720px) {
+    .window { width: 300px; }
     #win1 { top: 60px; left: 10px; }
-    #win2 { top: 260px; left: 20px; }
+    #win2 { top: 450px; left: 10px; }
+    #win3 { top: 820px; left: 10px; }
+    #win4 { top: 1200px; left: 10px; }
   }
 </style>
 </head>
@@ -238,48 +307,150 @@
   <a href="#" class="sns-btn">Instagram</a>
 </div>
 
-<!-- ウィンドウ 1: 湘南サナトリウムの病室 -->
+<!-- ウィンドウ 1: MAIN (写真・カウンター・WEB拍手) -->
 <div class="window" id="win1">
   <div class="window-header" onmousedown="dragStart(event, 'win1')" touchstart="dragStart(event, 'win1')">
-    <span>湘南サナトリウムの病室 official site</span>
+    <span>湘南サナトリウムの病室 [Main]</span>
     <div class="close-btn" onclick="closeWin('win1')">✕</div>
   </div>
   <div class="window-body">
-    <!-- 名前の表示部分 -->
     <div class="profile-name">管理人：佐々木繭子</div>
-    
-    <!-- 写真 -->
-    <img src="fxn 2026-10-17 112132A302E5376853.jpeg" alt="official" class="main-img">
+    <div class="counter-box">
+      あなたは <span class="counter-num" id="counter">000127</span> 人目の患者です
+    </div>
+    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="official" class="main-img">
     <marquee>湘南サナトリウムの病室へようこそ……ゆっくりしていってね</marquee>
+    
+    <!-- WEB拍手 -->
+    <div class="clap-box">
+      <div>💊 拍手を送る（一言応援）</div>
+      <button class="clap-btn" onclick="sendClap()">👏 パチパチする (<span id="clap-count">0</span>)</button>
+      <div id="clap-msg" style="margin-top:4px; font-size:11px; color:#c71585;"></div>
+    </div>
   </div>
 </div>
 
-<!-- ウィンドウ 2: NEWS -->
+<!-- ウィンドウ 2: PROFILE / DIARY / BOOKS (タブ付き) -->
 <div class="window" id="win2">
-  <div class="window-header blue" onmousedown="dragStart(event, 'win2')" touchstart="dragStart(event, 'win2')">
-    <span>NEWS</span>
+  <div class="window-header green" onmousedown="dragStart(event, 'win2')" touchstart="dragStart(event, 'win2')">
+    <span>MEMORANDUM [Profile/Diary/Books]</span>
     <div class="close-btn" onclick="closeWin('win2')">✕</div>
   </div>
   <div class="window-body">
-    <ul class="news-list">
-      <li class="news-item">
-        <div class="news-date">2026.10.17</div>
-        <div class="news-title">「湘南サナトリウムの病室」Webサイトを開設しました。</div>
-      </li>
+    <div class="tab-container">
+      <button class="tab-btn active" onclick="switchTab('tab-profile', this)">自己紹介</button>
+      <button class="tab-btn" onclick="switchTab('tab-diary', this)">日記</button>
+      <button class="tab-btn" onclick="switchTab('tab-books', this)">読んだ本</button>
+    </div>
+
+    <!-- タブ1: 自己紹介 -->
+    <div class="tab-content active" id="tab-profile">
+      <p><b>名前:</b> 佐々木繭子</p>
+      <p><b>生年月日:</b> ？？月？？日</p>
+      <p><b>好きなもの:</b> 静かな部屋、古い本、白いレース、微熱</p>
+      <p><b>一言:</b> 湘南サナトリウムの病室でひっそり暮らしています。気が向いたら日記を覗いていってください。</p>
+    </div>
+
+    <!-- タブ2: 日記 -->
+    <div class="tab-content" id="tab-diary">
+      <p><b>2026.10.18 (Sun)</b><br>
+      窓から見える海が今日はすごく青い。熱は微熱のまま変わらないけれど、新しいWebサイトができて少しだけ気分が良い。</p>
+      <hr style="border:0; border-top:1px dashed #ccc;">
+      <p><b>2026.10.15 (Thu)</b><br>
+      雨の音を聞きながら読書。時間がゆっくり流れている気がする。</p>
+    </div>
+
+    <!-- タブ3: 読んだ本 -->
+    <div class="tab-content" id="tab-books">
+      <ul>
+        <li>『檸檬』梶井基次郎</li>
+        <li>『人間失格』太宰治</li>
+        <li>『ドグラ・マグラ』夢野久作</li>
+        <li>『少女アリス』沢渡朔</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ウィンドウ 3: LINKS / MUSIC / CONTACT -->
+<div class="window" id="win3">
+  <div class="window-header blue" onmousedown="dragStart(event, 'win3')" touchstart="dragStart(event, 'win3')">
+    <span>LINKS & CONTACT</span>
+    <div class="close-btn" onclick="closeWin('win3')">✕</div>
+  </div>
+  <div class="window-body">
+    <p><b>🔗 相互リンク (Link)</b></p>
+    <p>当サイトはリンクフリーです！バナーはお持ち帰りください。</p>
+    <a href="#" class="link-banner">湘南サナトリウム</a>
+    <p style="font-size:11px; color:#666;">同盟・相互リンク様募集中...💊</p>
+
+    <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
+
+    <p><b>🎧 お気に入り曲 (Favorite Music)</b></p>
+    <ul style="padding-left: 20px; margin: 0;">
+      <li>戸川純 - 蛹化の女</li>
+      <li>相対性理論 - LOVEずっきゅん</li>
+      <li>神聖かまってちゃん - ロックンロールは鳴りやまないっ</li>
     </ul>
+
+    <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
+
+    <p><b>✉️ 連絡先 (Contact)</b></p>
+    <p>お仕事・相互リンクの依頼・メッセージはSNSのDM、または下記アドレスまで。</p>
+    <p style="background:#eee; padding:4px; font-family:monospace;">mayuko@shonan-sanatorium.jp</p>
+  </div>
+</div>
+
+<!-- ウィンドウ 4: NEWS -->
+<div class="window" id="win4">
+  <div class="window-header" onmousedown="dragStart(event, 'win4')" touchstart="dragStart(event, 'win4')">
+    <span>NEWS</span>
+    <div class="close-btn" onclick="closeWin('win4')">✕</div>
+  </div>
+  <div class="window-body">
+    <p><b>2026.10.18</b><br>「湘南サナトリウムの病室」リニューアルオープン！自己紹介・日記・相互リンク枠を追加しました。</p>
   </div>
 </div>
 
 <!-- タスクバー -->
 <div class="taskbar">
   <div class="taskbar-left">
-    <button class="task-btn" onclick="showWin('win1')">📁 Menu</button>
-    <button class="task-btn" onclick="showWin('win2')">Home</button>
+    <button class="task-btn" onclick="showWin('win1')">Main</button>
+    <button class="task-btn" onclick="showWin('win2')">Profile/Diary</button>
+    <button class="task-btn" onclick="showWin('win3')">Links/Contact</button>
+    <button class="task-btn" onclick="showWin('win4')">News</button>
   </div>
   <div class="clock-box" id="clock">Tokyo 00:00:00</div>
 </div>
 
 <script>
+  // アクセスカウンター
+  let count = localStorage.getItem('visit_count');
+  if (!count) { count = 127; } else { count = parseInt(count) + 1; }
+  localStorage.setItem('visit_count', count);
+  document.getElementById('counter').innerText = String(count).padStart(6, '0');
+
+  // WEB拍手
+  let claps = localStorage.getItem('clap_count') || 0;
+  document.getElementById('clap-count').innerText = claps;
+
+  function sendClap() {
+    claps = parseInt(claps) + 1;
+    localStorage.setItem('clap_count', claps);
+    document.getElementById('clap-count').innerText = claps;
+    document.getElementById('clap-msg').innerText = 'パチパチありがとうございます...💊';
+  }
+
+  // タブ切り替え
+  function switchTab(tabId, btn) {
+    const parent = btn.closest('.window-body');
+    parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    
+    btn.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  }
+
   // 時計機能
   function updateClock() {
     const now = new Date();
@@ -292,11 +463,13 @@
   updateClock();
 
   // ウィンドウ表示・非表示
-  function closeWin(id) {
-    document.getElementById(id).style.display = 'none';
-  }
+  function closeWin(id) { document.getElementById(id).style.display = 'none'; }
   function showWin(id) {
-    document.getElementById(id).style.display = 'block';
+    const win = document.getElementById(id);
+    win.style.display = 'block';
+    // 最前面へ
+    document.querySelectorAll('.window').forEach(w => w.style.zIndex = 20);
+    win.style.zIndex = 30;
   }
 
   // ドラッグ機能
@@ -311,7 +484,6 @@
     offsetX = clientX - activeWin.offsetLeft;
     offsetY = clientY - activeWin.offsetTop;
     
-    // 最前面へ
     document.querySelectorAll('.window').forEach(w => w.style.zIndex = 20);
     activeWin.style.zIndex = 30;
 
