@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>diig official site</title>
+<title>湘南サナトリウムの病室</title>
 <style>
   * {
     box-sizing: border-box;
@@ -57,7 +57,7 @@
     position: absolute;
     top: 10px;
     left: 15px;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bold;
     font-style: italic;
     color: #fff;
@@ -218,7 +218,7 @@
 
 <div class="bg-pattern"></div>
 
-<div class="site-logo">diig</div>
+<div class="site-logo">湘南サナトリウムの病室</div>
 
 <div class="header-sns">
   <a href="#" class="sns-btn">X</a>
@@ -227,15 +227,16 @@
   <a href="#" class="sns-btn">Instagram</a>
 </div>
 
-<!-- ウィンドウ 1: diig official site -->
+<!-- ウィンドウ 1: 湘南サナトリウムの病室 -->
 <div class="window" id="win1">
   <div class="window-header" onmousedown="dragStart(event, 'win1')" touchstart="dragStart(event, 'win1')">
-    <span>diig official site</span>
+    <span>湘南サナトリウムの病室 official site</span>
     <div class="close-btn" onclick="closeWin('win1')">✕</div>
   </div>
   <div class="window-body">
-    <img src="https://picsum.photos/400/300" alt="official" class="main-img">
-    <marquee>サイトへようこそ！diigの公式HPへようこそ！</marquee>
+    <!-- ↓画像を自分のファイル名（例: myphoto.jpg）に変えてね！ -->
+    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="official" class="main-img">
+    <marquee>湘南サナトリウムの病室へようこそ……</marquee>
   </div>
 </div>
 
@@ -248,16 +249,8 @@
   <div class="window-body">
     <ul class="news-list">
       <li class="news-item">
-        <div class="news-date">2026.08.03</div>
-        <div class="news-title">【8月8日リリイベ】diig 1st full album 「...</div>
-      </li>
-      <li class="news-item">
-        <div class="news-date">2026.07.11</div>
-        <div class="news-title">diig全国ツアー「また君に会いたくなった」開催決定！</div>
-      </li>
-      <li class="news-item">
-        <div class="news-date">2026.07.01</div>
-        <div class="news-title">公式Webサイトをリニューアルオープン！</div>
+        <div class="news-date">2026.10.17</div>
+        <div class="news-title">「湘南サナトリウムの病室」Webサイトを開設しました。</div>
       </li>
     </ul>
   </div>
@@ -269,4 +262,68 @@
     <button class="task-btn" onclick="showWin('win1')">📁 Menu</button>
     <button class="task-btn" onclick="showWin('win2')">Home</button>
   </div>
-  <div class="clock-
+  <div class="clock-box" id="clock">Tokyo 00:00:00</div>
+</div>
+
+<script>
+  // 時計機能
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').innerText = `Tokyo ${h}:${m}:${s}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // ウィンドウ表示・非表示
+  function closeWin(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+  function showWin(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+
+  // ドラッグ機能
+  let activeWin = null;
+  let offsetX = 0, offsetY = 0;
+
+  function dragStart(e, id) {
+    activeWin = document.getElementById(id);
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    offsetX = clientX - activeWin.offsetLeft;
+    offsetY = clientY - activeWin.offsetTop;
+    
+    // 最前面へ
+    document.querySelectorAll('.window').forEach(w => w.style.zIndex = 20);
+    activeWin.style.zIndex = 30;
+
+    document.addEventListener('mousemove', dragMove);
+    document.addEventListener('mouseup', dragEnd);
+    document.addEventListener('touchmove', dragMove, { passive: false });
+    document.addEventListener('touchend', dragEnd);
+  }
+
+  function dragMove(e) {
+    if (!activeWin) return;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    activeWin.style.left = (clientX - offsetX) + 'px';
+    activeWin.style.top = (clientY - offsetY) + 'px';
+  }
+
+  function dragEnd() {
+    activeWin = null;
+    document.removeEventListener('mousemove', dragMove);
+    document.removeEventListener('mouseup', dragEnd);
+    document.removeEventListener('touchmove', dragMove);
+    document.removeEventListener('touchend', dragEnd);
+  }
+</script>
+
+</body>
+</html>
