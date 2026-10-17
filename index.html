@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>湘南サナトリウムの病室</title>
+<!-- Google Fonts: レトロドットフォント (DotGothic16) 読み込み -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
   * {
     box-sizing: border-box;
@@ -14,7 +17,8 @@
     padding: 0;
     height: 100vh;
     background: linear-gradient(135deg, #a8c0ff, #3f2b96);
-    font-family: 'Courier New', Courier, monospace;
+    /* ドットフォントを全体に適用 */
+    font-family: 'DotGothic16', monospace, sans-serif;
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;
@@ -77,6 +81,11 @@
     z-index: 20;
   }
 
+  /* NEWS詳細用の大きなウィンドウ */
+  .window.large-window {
+    width: 350px;
+  }
+
   .window-header {
     background: linear-gradient(90deg, #ffb6c1, #ff69b4);
     padding: 3px 6px;
@@ -84,7 +93,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: move;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     color: #000;
   }
@@ -122,9 +131,9 @@
     margin: 4px;
     border: 2px solid;
     border-color: #808080 #ffffff #ffffff #808080;
-    max-height: 380px;
+    max-height: 420px;
     overflow-y: auto;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   /* タブUI */
@@ -142,6 +151,7 @@
     font-size: 11px;
     cursor: pointer;
     font-weight: bold;
+    font-family: 'DotGothic16', monospace;
   }
   .tab-btn.active {
     background: #fff;
@@ -168,7 +178,7 @@
   /* アクセスカウンター */
   .counter-box {
     text-align: center;
-    font-size: 11px;
+    font-size: 12px;
     color: #555;
     margin-bottom: 8px;
     padding-bottom: 6px;
@@ -178,7 +188,7 @@
     display: inline-block;
     background: #000;
     color: #ff007f;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'DotGothic16', monospace;
     font-weight: bold;
     padding: 2px 6px;
     border: 1px solid #808080;
@@ -200,6 +210,58 @@
     padding: 2px;
   }
 
+  /* ニュースリストスタイル */
+  .news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .news-item {
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 6px;
+    cursor: pointer;
+  }
+  .news-item:hover {
+    background: #f0f8ff;
+  }
+  .news-date {
+    color: #888;
+    font-size: 11px;
+  }
+  .news-title-link {
+    font-weight: bold;
+    color: #0000ff;
+    text-decoration: underline;
+    margin-top: 2px;
+  }
+
+  /* NEWS詳細画面スタイル */
+  .news-detail-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .news-detail-date {
+    color: #666;
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+  .news-detail-img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #808080;
+    margin-bottom: 10px;
+  }
+  .news-detail-body {
+    font-size: 12px;
+    line-height: 1.6;
+    background: #f9f9f9;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+  }
+
   /* WEB拍手 */
   .clap-box {
     margin-top: 10px;
@@ -217,6 +279,7 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 4px;
+    font-family: 'DotGothic16', monospace;
   }
   .clap-btn:active {
     border-color: #c71585 #ffffff #ffffff #c71585;
@@ -266,6 +329,7 @@
     font-size: 11px;
     font-weight: bold;
     cursor: pointer;
+    font-family: 'DotGothic16', monospace;
   }
   .task-btn:active {
     border-color: #808080 #ffffff #ffffff #808080;
@@ -284,13 +348,16 @@
   #win2 { top: 120px; left: 360px; }
   #win3 { top: 460px; left: 15px; }
   #win4 { top: 480px; left: 360px; }
+  #win-news-detail { top: 80px; left: 50px; display: none; } /* 初期状態は非表示 */
 
   @media (max-width: 720px) {
     .window { width: 300px; }
+    .window.large-window { width: 310px; }
     #win1 { top: 60px; left: 10px; }
     #win2 { top: 450px; left: 10px; }
     #win3 { top: 820px; left: 10px; }
     #win4 { top: 1200px; left: 10px; }
+    #win-news-detail { top: 70px; left: 10px; }
   }
 </style>
 </head>
@@ -318,7 +385,7 @@
     <div class="counter-box">
       あなたは <span class="counter-num" id="counter">000127</span> 人目の患者です
     </div>
-    <img src="fxn 2026-10-17 112132A302E5376853.jpeg" alt="official" class="main-img">
+    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="official" class="main-img">
     <marquee>湘南サナトリウムの病室へようこそ……ゆっくりしていってね</marquee>
     
     <!-- WEB拍手 -->
@@ -330,7 +397,7 @@
   </div>
 </div>
 
-<!-- ウィンドウ 2: PROFILE / DIARY / BOOKS (タブ付き) -->
+<!-- ウィンドウ 2: PROFILE / DIARY / BOOKS -->
 <div class="window" id="win2">
   <div class="window-header green" onmousedown="dragStart(event, 'win2')" touchstart="dragStart(event, 'win2')">
     <span>MEMORANDUM [Profile/Diary/Books]</span>
@@ -346,10 +413,9 @@
     <!-- タブ1: 自己紹介 -->
     <div class="tab-content active" id="tab-profile">
       <p><b>名前:</b> 佐々木繭子</p>
-      <p><b>生年月日:</b> 2001年3月5日</p>
-      <p><b>居住地:</b> 日本 神奈川県</p>
-      <p><b>好きなもの:</b> 近代日本文学、水族館、プラネタリウム</p>
-      <p><b>一言:</b> バーチャル湘南サナトリウムの病室でひっそり暮らしています。気が向いたら日記を覗いていってください。</p>
+      <p><b>生年月日:</b> ？？月？？日</p>
+      <p><b>好きなもの:</b> 静かな部屋、古い本、白いレース、微熱</p>
+      <p><b>一言:</b> 湘南サナトリウムの病室でひっそり暮らしています。気が向いたら日記を覗いていってください。</p>
     </div>
 
     <!-- タブ2: 日記 -->
@@ -389,27 +455,55 @@
 
     <p><b>🎧 お気に入り曲 (Favorite Music)</b></p>
     <ul style="padding-left: 20px; margin: 0;">
-      <li>KATSEYE - Internet Girl</li>
-      <li>LE SSERAFIM - Perfect Night</li>
-      <li>IVE - In Your Heart(REI Solo)</li>
+      <li>戸川純 - 蛹化の女</li>
+      <li>相対性理論 - LOVEずっきゅん</li>
+      <li>神聖かまってちゃん - ロックンロールは鳴りやまないっ</li>
     </ul>
 
     <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
 
     <p><b>✉️ 連絡先 (Contact)</b></p>
     <p>お仕事・相互リンクの依頼・メッセージはSNSのDM、または下記アドレスまで。</p>
-    <p style="background:#eee; padding:4px; font-family:monospace;">morichka.mail@gmail.com</p>
+    <p style="background:#eee; padding:4px; font-family:monospace;">mayuko@shonan-sanatorium.jp</p>
   </div>
 </div>
 
-<!-- ウィンドウ 4: NEWS -->
+<!-- ウィンドウ 4: NEWS一覧 -->
 <div class="window" id="win4">
   <div class="window-header" onmousedown="dragStart(event, 'win4')" touchstart="dragStart(event, 'win4')">
     <span>NEWS</span>
     <div class="close-btn" onclick="closeWin('win4')">✕</div>
   </div>
   <div class="window-body">
-    <p><b>2026.10.18</b><br>「湘南サナトリウムの病室」リニューアル！自己紹介・日記・相互リンク枠を追加しました。</p>
+    <ul class="news-list">
+      <!-- クリックすると詳細画面が開くよ -->
+      <li class="news-item" onclick="openNewsDetail()">
+        <div class="news-date">2026.10.18</div>
+        <div class="news-title-link">【お知らせ】Webサイト「湘南サナトリウムの病室」開設のお知らせ</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ウィンドウ 5: NEWS詳細画面 (クリックでポップアップ表示) -->
+<div class="window large-window" id="win-news-detail">
+  <div class="window-header blue" onmousedown="dragStart(event, 'win-news-detail')" touchstart="dragStart(event, 'win-news-detail')">
+    <span>NEWS [Detail]</span>
+    <div class="close-btn" onclick="closeWin('win-news-detail')">✕</div>
+  </div>
+  <div class="window-body">
+    <div class="news-detail-title">【お知らせ】Webサイト「湘南サナトリウムの病室」開設のお知らせ</div>
+    <div class="news-detail-date">2026.10.18</div>
+    
+    <!-- NEWS画像 (好きな画像URLに変更してね) -->
+    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" class="news-detail-img" alt="news-img">
+    
+    <div class="news-detail-body">
+      「湘南サナトリウムの病室」へようこそ。<br><br>
+      本日より公式Webサイトをオープンいたしました。<br>
+      ここでは日常の日記や好きな本、音楽などを静かに公開していきます。<br><br>
+      相互リンクや一言メッセージ（WEB拍手）もお待ちしております。
+    </div>
   </div>
 </div>
 
@@ -450,6 +544,11 @@
     
     btn.classList.add('active');
     document.getElementById(tabId).classList.add('active');
+  }
+
+  // NEWS詳細を開く
+  function openNewsDetail() {
+    showWin('win-news-detail');
   }
 
   // 時計機能
