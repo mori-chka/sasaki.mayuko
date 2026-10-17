@@ -17,7 +17,6 @@
     padding: 0;
     height: 100vh;
     background: linear-gradient(135deg, #a8c0ff, #3f2b96);
-    /* ドットフォントを全体に適用 */
     font-family: 'DotGothic16', monospace, sans-serif;
     overflow-x: hidden;
     overflow-y: auto;
@@ -81,7 +80,6 @@
     z-index: 20;
   }
 
-  /* NEWS詳細用の大きなウィンドウ */
   .window.large-window {
     width: 350px;
   }
@@ -210,7 +208,7 @@
     padding: 2px;
   }
 
-  /* ニュースリストスタイル */
+  /* ニュース・日記リスト */
   .news-list {
     list-style: none;
     padding: 0;
@@ -234,32 +232,7 @@
     color: #0000ff;
     text-decoration: underline;
     margin-top: 2px;
-  }
-
-  /* NEWS詳細画面スタイル */
-  .news-detail-title {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 6px;
-    line-height: 1.4;
-  }
-  .news-detail-date {
-    color: #666;
-    font-size: 11px;
-    margin-bottom: 10px;
-  }
-  .news-detail-img {
-    width: 100%;
-    height: auto;
-    border: 1px solid #808080;
-    margin-bottom: 10px;
-  }
-  .news-detail-body {
-    font-size: 12px;
-    line-height: 1.6;
-    background: #f9f9f9;
-    padding: 8px;
-    border: 1px solid #e0e0e0;
+    display: block;
   }
 
   /* WEB拍手 */
@@ -330,6 +303,8 @@
     font-weight: bold;
     cursor: pointer;
     font-family: 'DotGothic16', monospace;
+    color: #000;
+    text-decoration: none;
   }
   .task-btn:active {
     border-color: #808080 #ffffff #ffffff #808080;
@@ -348,16 +323,13 @@
   #win2 { top: 120px; left: 360px; }
   #win3 { top: 460px; left: 15px; }
   #win4 { top: 480px; left: 360px; }
-  #win-news-detail { top: 80px; left: 50px; display: none; } /* 初期状態は非表示 */
 
   @media (max-width: 720px) {
     .window { width: 300px; }
-    .window.large-window { width: 310px; }
     #win1 { top: 60px; left: 10px; }
     #win2 { top: 450px; left: 10px; }
     #win3 { top: 820px; left: 10px; }
     #win4 { top: 1200px; left: 10px; }
-    #win-news-detail { top: 70px; left: 10px; }
   }
 </style>
 </head>
@@ -374,7 +346,7 @@
   <a href="#" class="sns-btn">Instagram</a>
 </div>
 
-<!-- ウィンドウ 1: MAIN (写真・カウンター・WEB拍手) -->
+<!-- ウィンドウ 1: MAIN -->
 <div class="window" id="win1">
   <div class="window-header" onmousedown="dragStart(event, 'win1')" touchstart="dragStart(event, 'win1')">
     <span>湘南サナトリウムの病室 [Main]</span>
@@ -397,7 +369,7 @@
   </div>
 </div>
 
-<!-- ウィンドウ 2: PROFILE / DIARY / BOOKS -->
+<!-- ウィンドウ 2: MEMORANDUM (緑色のウィンドウ) -->
 <div class="window" id="win2">
   <div class="window-header green" onmousedown="dragStart(event, 'win2')" touchstart="dragStart(event, 'win2')">
     <span>MEMORANDUM [Profile/Diary/Books]</span>
@@ -418,13 +390,21 @@
       <p><b>一言:</b> 湘南サナトリウムの病室でひっそり暮らしています。気が向いたら日記を覗いていってください。</p>
     </div>
 
-    <!-- タブ2: 日記 -->
+    <!-- タブ2: 日記（クリックすると diary.html へ飛ばすリンク付き） -->
     <div class="tab-content" id="tab-diary">
-      <p><b>2026.10.18 (Sun)</b><br>
-      窓から見える海が今日はすごく青い。熱は微熱のまま変わらないけれど、新しいWebサイトができて少しだけ気分が良い。</p>
-      <hr style="border:0; border-top:1px dashed #ccc;">
-      <p><b>2026.10.15 (Thu)</b><br>
-      雨の音を聞きながら読書。時間がゆっくり流れている気がする。</p>
+      <div style="margin-bottom: 12px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
+        <div style="font-size:11px; color:#888;">2026.10.18 (Sun)</div>
+        <a href="diary.html" class="news-title-link">青い海と微熱の午後</a>
+        <p style="margin: 4px 0;">窓から見える海が今日はすごく青い。熱は微熱のまま変わらないけれど…</p>
+        <a href="diary.html" style="color:#0000ff; font-weight:bold; font-size:11px;">👉 全文を読む (diary.html)</a>
+      </div>
+
+      <div style="margin-bottom: 8px;">
+        <div style="font-size:11px; color:#888;">2026.10.15 (Thu)</div>
+        <a href="diary.html" class="news-title-link">雨の音と古い本</a>
+        <p style="margin: 4px 0;">朝からしとしとと雨が降っている。雨の日は外の音が遮断されて…</p>
+        <a href="diary.html" style="color:#0000ff; font-weight:bold; font-size:11px;">👉 全文を読む (diary.html)</a>
+      </div>
     </div>
 
     <!-- タブ3: 読んだ本 -->
@@ -476,34 +456,11 @@
   </div>
   <div class="window-body">
     <ul class="news-list">
-      <!-- クリックすると詳細画面が開くよ -->
-      <li class="news-item" onclick="openNewsDetail()">
+      <li class="news-item">
         <div class="news-date">2026.10.18</div>
-        <div class="news-title-link">【お知らせ】Webサイト「湘南サナトリウムの病室」開設のお知らせ</div>
+        <a href="diary.html" class="news-title-link">【お知らせ】Webサイト「湘南サナトリウムの病室」開設のお知らせ</a>
       </li>
     </ul>
-  </div>
-</div>
-
-<!-- ウィンドウ 5: NEWS詳細画面 (クリックでポップアップ表示) -->
-<div class="window large-window" id="win-news-detail">
-  <div class="window-header blue" onmousedown="dragStart(event, 'win-news-detail')" touchstart="dragStart(event, 'win-news-detail')">
-    <span>NEWS [Detail]</span>
-    <div class="close-btn" onclick="closeWin('win-news-detail')">✕</div>
-  </div>
-  <div class="window-body">
-    <div class="news-detail-title">【お知らせ】Webサイト「湘南サナトリウムの病室」開設のお知らせ</div>
-    <div class="news-detail-date">2026.10.18</div>
-    
-    <!-- NEWS画像 (好きな画像URLに変更してね) -->
-    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" class="news-detail-img" alt="news-img">
-    
-    <div class="news-detail-body">
-      「湘南サナトリウムの病室」へようこそ。<br><br>
-      本日より公式Webサイトをオープンいたしました。<br>
-      ここでは日常の日記や好きな本、音楽などを静かに公開していきます。<br><br>
-      相互リンクや一言メッセージ（WEB拍手）もお待ちしております。
-    </div>
   </div>
 </div>
 
@@ -511,7 +468,8 @@
 <div class="taskbar">
   <div class="taskbar-left">
     <button class="task-btn" onclick="showWin('win1')">Main</button>
-    <button class="task-btn" onclick="showWin('win2')">Profile/Diary</button>
+    <!-- ダイレクトに diary.html へ飛ぶボタンに変更 -->
+    <a href="diary.html" class="task-btn">📖 Diary (日記)</a>
     <button class="task-btn" onclick="showWin('win3')">Links/Contact</button>
     <button class="task-btn" onclick="showWin('win4')">News</button>
   </div>
@@ -546,11 +504,6 @@
     document.getElementById(tabId).classList.add('active');
   }
 
-  // NEWS詳細を開く
-  function openNewsDetail() {
-    showWin('win-news-detail');
-  }
-
   // 時計機能
   function updateClock() {
     const now = new Date();
@@ -567,7 +520,6 @@
   function showWin(id) {
     const win = document.getElementById(id);
     win.style.display = 'block';
-    // 最前面へ
     document.querySelectorAll('.window').forEach(w => w.style.zIndex = 20);
     win.style.zIndex = 30;
   }
