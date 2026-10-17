@@ -57,7 +57,7 @@
     position: absolute;
     top: 10px;
     left: 15px;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     font-style: italic;
     color: #fff;
@@ -118,6 +118,17 @@
     border-color: #808080 #ffffff #ffffff #808080;
     max-height: 350px;
     overflow-y: auto;
+  }
+
+  /* プロフィール・名前部分 */
+  .profile-name {
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px dotted #ff69b4;
   }
 
   /* メイン画像＆マーキー */
@@ -205,12 +216,12 @@
 
   /* 初期位置 */
   #win1 { top: 70px; left: 20px; }
-  #win2 { top: 220px; left: 50px; }
+  #win2 { top: 250px; left: 40px; }
 
   @media (max-width: 480px) {
     .window { width: 280px; }
     #win1 { top: 60px; left: 10px; }
-    #win2 { top: 240px; left: 30px; }
+    #win2 { top: 260px; left: 20px; }
   }
 </style>
 </head>
@@ -234,9 +245,12 @@
     <div class="close-btn" onclick="closeWin('win1')">✕</div>
   </div>
   <div class="window-body">
-    <!-- ↓画像を自分のファイル名（例: myphoto.jpg）に変えてね！ -->
+    <!-- 名前の表示部分 -->
+    <div class="profile-name">管理人：佐々木繭子</div>
+    
+    <!-- 写真 -->
     <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="official" class="main-img">
-    <marquee>湘南サナトリウムの病室へようこそ……</marquee>
+    <marquee>湘南サナトリウムの病室へようこそ……ゆっくりしていってね</marquee>
   </div>
 </div>
 
