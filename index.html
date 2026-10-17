@@ -1,4 +1,272 @@
-{
-  "type": "canvas",
-  "query": "Create a retro 90s Windows/Y2K style personal web page inside Web Code Canvas. Features include:\n1. A nostalgic Y2K / Windows 95 pastel aesthetic with retro fonts, gradient background, tile patterns, and window UI components.\n2. Draggable window components for 'Official Site' (with photo and marquee welcome text) and 'NEWS' (with announcement list).\n3. Close buttons (X) that can hide/close windows.\n4. Bottom taskbar with Menu/Home buttons and a live digital clock showing 'Tokyo HH:MM:SS'.\n5. Clean, fully self-contained HTML/CSS/JavaScript with responsive layout for both mobile and desktop."
-}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>diig official site</title>
+<style>
+  * {
+    box-sizing: border-box;
+    user-select: none;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* レトロ背景模様 */
+  .bg-pattern {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 0);
+    background-size: 16px 16px;
+    pointer-events: none;
+  }
+
+  /* ヘッダーSNSリンク */
+  .header-sns {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  .sns-btn {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 1px 1px 0px #000;
+  }
+  .sns-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+
+  /* ロゴ */
+  .site-logo {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 36px;
+    font-weight: bold;
+    font-style: italic;
+    color: #fff;
+    text-shadow: 2px 2px #ff007f, -2px -2px #00ffff;
+    z-index: 10;
+  }
+
+  /* ウィンドウ共通スタイル */
+  .window {
+    position: absolute;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    z-index: 20;
+  }
+
+  .window-header {
+    background: linear-gradient(90deg, #ffb6c1, #ff69b4);
+    padding: 3px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .window-header.blue {
+    background: linear-gradient(90deg, #7b68ee, #6a5acd);
+    color: #fff;
+  }
+
+  .close-btn {
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    line-height: 14px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #000;
+  }
+  .close-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+
+  .window-body {
+    padding: 8px;
+    background: #fff;
+    margin: 4px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    max-height: 350px;
+    overflow-y: auto;
+  }
+
+  /* メイン画像＆マーキー */
+  .main-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #808080;
+  }
+  marquee {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #d10068;
+    background: #ffe4e1;
+    padding: 2px;
+  }
+
+  /* ニュースリスト */
+  .news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+  }
+  .news-item {
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+  }
+  .news-date {
+    color: #888;
+    font-size: 11px;
+  }
+  .news-title {
+    font-weight: bold;
+    color: #000;
+    margin-top: 2px;
+  }
+
+  /* タスクバー */
+  .taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: #c0c0c0;
+    border-top: 2px solid #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 4px;
+    z-index: 100;
+  }
+
+  .taskbar-left {
+    display: flex;
+    gap: 4px;
+  }
+
+  .task-btn {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .task-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+
+  .clock-box {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    padding: 3px 8px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  /* 初期位置 */
+  #win1 { top: 70px; left: 20px; }
+  #win2 { top: 220px; left: 50px; }
+
+  @media (max-width: 480px) {
+    .window { width: 280px; }
+    #win1 { top: 60px; left: 10px; }
+    #win2 { top: 240px; left: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+
+<div class="site-logo">diig</div>
+
+<div class="header-sns">
+  <a href="#" class="sns-btn">X</a>
+  <a href="#" class="sns-btn">TikTok</a>
+  <a href="#" class="sns-btn">YouTube</a>
+  <a href="#" class="sns-btn">Instagram</a>
+</div>
+
+<!-- ウィンドウ 1: diig official site -->
+<div class="window" id="win1">
+  <div class="window-header" onmousedown="dragStart(event, 'win1')" touchstart="dragStart(event, 'win1')">
+    <span>diig official site</span>
+    <div class="close-btn" onclick="closeWin('win1')">✕</div>
+  </div>
+  <div class="window-body">
+    <img src="https://picsum.photos/400/300" alt="official" class="main-img">
+    <marquee>サイトへようこそ！diigの公式HPへようこそ！</marquee>
+  </div>
+</div>
+
+<!-- ウィンドウ 2: NEWS -->
+<div class="window" id="win2">
+  <div class="window-header blue" onmousedown="dragStart(event, 'win2')" touchstart="dragStart(event, 'win2')">
+    <span>NEWS</span>
+    <div class="close-btn" onclick="closeWin('win2')">✕</div>
+  </div>
+  <div class="window-body">
+    <ul class="news-list">
+      <li class="news-item">
+        <div class="news-date">2026.08.03</div>
+        <div class="news-title">【8月8日リリイベ】diig 1st full album 「...</div>
+      </li>
+      <li class="news-item">
+        <div class="news-date">2026.07.11</div>
+        <div class="news-title">diig全国ツアー「また君に会いたくなった」開催決定！</div>
+      </li>
+      <li class="news-item">
+        <div class="news-date">2026.07.01</div>
+        <div class="news-title">公式Webサイトをリニューアルオープン！</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- タスクバー -->
+<div class="taskbar">
+  <div class="taskbar-left">
+    <button class="task-btn" onclick="showWin('win1')">📁 Menu</button>
+    <button class="task-btn" onclick="showWin('win2')">Home</button>
+  </div>
+  <div class="clock-
