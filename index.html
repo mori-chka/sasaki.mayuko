@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>湘南サナトリウムの病室</title>
+<title>湘南サナトリウム</title>
 <!-- Google Fonts: レトロドットフォント (DotGothic16) 読み込み -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
@@ -23,7 +23,6 @@
     position: relative;
   }
   
-  /* レトロ背景模様 */
   .bg-pattern {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -32,7 +31,6 @@
     pointer-events: none;
   }
 
-  /* ヘッダーSNSリンク */
   .header-sns {
     position: absolute;
     top: 10px;
@@ -56,7 +54,6 @@
     border-color: #808080 #ffffff #ffffff #808080;
   }
 
-  /* ロゴ */
   .site-logo {
     position: absolute;
     top: 10px;
@@ -69,7 +66,6 @@
     z-index: 10;
   }
 
-  /* ウィンドウ共通スタイル */
   .window {
     position: absolute;
     background: #c0c0c0;
@@ -78,10 +74,6 @@
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
     width: 330px;
     z-index: 20;
-  }
-
-  .window.large-window {
-    width: 350px;
   }
 
   .window-header {
@@ -134,7 +126,6 @@
     font-size: 13px;
   }
 
-  /* タブUI */
   .tab-container {
     display: flex;
     gap: 2px;
@@ -164,7 +155,6 @@
     display: block;
   }
 
-  /* プロフィール・名前部分 */
   .profile-name {
     text-align: center;
     font-weight: bold;
@@ -173,7 +163,6 @@
     margin-bottom: 4px;
   }
 
-  /* アクセスカウンター */
   .counter-box {
     text-align: center;
     font-size: 12px;
@@ -193,7 +182,6 @@
     letter-spacing: 2px;
   }
 
-  /* メイン画像＆マーキー */
   .main-img {
     width: 100%;
     height: auto;
@@ -208,7 +196,6 @@
     padding: 2px;
   }
 
-  /* ニュース・日記リスト */
   .news-list {
     list-style: none;
     padding: 0;
@@ -218,14 +205,6 @@
     margin-bottom: 10px;
     border-bottom: 1px dashed #ccc;
     padding-bottom: 6px;
-    cursor: pointer;
-  }
-  .news-item:hover {
-    background: #f0f8ff;
-  }
-  .news-date {
-    color: #888;
-    font-size: 11px;
   }
   .news-title-link {
     font-weight: bold;
@@ -235,7 +214,6 @@
     display: block;
   }
 
-  /* WEB拍手 */
   .clap-box {
     margin-top: 10px;
     padding: 8px;
@@ -258,7 +236,6 @@
     border-color: #c71585 #ffffff #ffffff #c71585;
   }
 
-  /* 相互リンク・バナー */
   .link-banner {
     display: inline-block;
     width: 200px;
@@ -274,7 +251,6 @@
     margin: 4px 0;
   }
 
-  /* タスクバー */
   .taskbar {
     position: fixed;
     bottom: 0;
@@ -318,7 +294,6 @@
     font-weight: bold;
   }
 
-  /* 初期位置設定 */
   #win1 { top: 60px; left: 15px; }
   #win2 { top: 120px; left: 360px; }
   #win3 { top: 460px; left: 15px; }
@@ -337,7 +312,7 @@
 
 <div class="bg-pattern"></div>
 
-<div class="site-logo">湘南サナトリウムの病室</div>
+<div class="site-logo">湘南サナトリウム</div>
 
 <div class="header-sns">
   <a href="#" class="sns-btn">X</a>
@@ -349,7 +324,7 @@
 <!-- ウィンドウ 1: MAIN -->
 <div class="window" id="win1">
   <div class="window-header" onmousedown="dragStart(event, 'win1')" touchstart="dragStart(event, 'win1')">
-    <span>湘南サナトリウムの病室 [Main]</span>
+    <span>湘南サナトリウム [Main]</span>
     <div class="close-btn" onclick="closeWin('win1')">✕</div>
   </div>
   <div class="window-body">
@@ -360,7 +335,6 @@
     <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="official" class="main-img">
     <marquee>湘南サナトリウムの病室へようこそ……ゆっくりしていってね</marquee>
     
-    <!-- WEB拍手 -->
     <div class="clap-box">
       <div>💊 拍手を送る（一言応援）</div>
       <button class="clap-btn" onclick="sendClap()">👏 パチパチする (<span id="clap-count">0</span>)</button>
@@ -369,7 +343,7 @@
   </div>
 </div>
 
-<!-- ウィンドウ 2: MEMORANDUM (緑色のウィンドウ) -->
+<!-- ウィンドウ 2: MEMORANDUM -->
 <div class="window" id="win2">
   <div class="window-header green" onmousedown="dragStart(event, 'win2')" touchstart="dragStart(event, 'win2')">
     <span>MEMORANDUM [Profile/Diary/Books]</span>
@@ -385,25 +359,16 @@
     <!-- タブ1: 自己紹介 -->
     <div class="tab-content active" id="tab-profile">
       <p><b>名前:</b> 佐々木繭子</p>
-      <p><b>生年月日:</b> ？？月？？日</p>
-      <p><b>好きなもの:</b> 静かな部屋、古い本、白いレース、微熱</p>
-      <p><b>一言:</b> 湘南サナトリウムの病室でひっそり暮らしています。気が向いたら日記を覗いていってください。</p>
+      <p><b>生年月日:</b> 3月5日</p>
+      <p><b>好きなもの:</b> 近代日本文学、旧制高校、外国語、水族館、プラネタリウム</p>
+      <p><b>趣味:</b> 読書、語学学習、古書店巡り、純喫茶巡り、文房具・紙モノ集め</p>
+      <p><b>一言:</b> バーチャルナースです。湘南サナトリウムでひっそり暮らしています。</p>
     </div>
 
-    <!-- タブ2: 日記（クリックすると diary.html へ飛ばすリンク付き） -->
+    <!-- タブ2: 日記 (JavaScriptで diary.html から自動で読み込んで差し替えます) -->
     <div class="tab-content" id="tab-diary">
-      <div style="margin-bottom: 12px; border-bottom: 1px dashed #ccc; padding-bottom: 8px;">
-        <div style="font-size:11px; color:#888;">2026.10.18 (Sun)</div>
-        <a href="diary.html" class="news-title-link">青い海と微熱の午後</a>
-        <p style="margin: 4px 0;">窓から見える海が今日はすごく青い。熱は微熱のまま変わらないけれど…</p>
-        <a href="diary.html" style="color:#0000ff; font-weight:bold; font-size:11px;">👉 全文を読む (diary.html)</a>
-      </div>
-
-      <div style="margin-bottom: 8px;">
-        <div style="font-size:11px; color:#888;">2026.10.15 (Thu)</div>
-        <a href="diary.html" class="news-title-link">雨の音と古い本</a>
-        <p style="margin: 4px 0;">朝からしとしとと雨が降っている。雨の日は外の音が遮断されて…</p>
-        <a href="diary.html" style="color:#0000ff; font-weight:bold; font-size:11px;">👉 全文を読む (diary.html)</a>
+      <div id="diary-preview">
+        <p style="color:#888; font-size:11px;">最新の日記を読み込み中...</p>
       </div>
     </div>
 
@@ -435,16 +400,19 @@
 
     <p><b>🎧 お気に入り曲 (Favorite Music)</b></p>
     <ul style="padding-left: 20px; margin: 0;">
-      <li>戸川純 - 蛹化の女</li>
-      <li>相対性理論 - LOVEずっきゅん</li>
-      <li>神聖かまってちゃん - ロックンロールは鳴りやまないっ</li>
+      <li>YUKIKA - NEON</li>
+      <li>LE SSERAFIM - Perfect Night</li>
+      <li>KATSEYE - Internet Girl</li>
+      <li>IVE - In Your Heart(REI Solo)</li>
+      <li>ILLIT - Tick-Tack</li>
+      <li>NewJeans - New Jeans</li>
     </ul>
 
     <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
 
     <p><b>✉️ 連絡先 (Contact)</b></p>
     <p>お仕事・相互リンクの依頼・メッセージはSNSのDM、または下記アドレスまで。</p>
-    <p style="background:#eee; padding:4px; font-family:monospace;">mayuko@shonan-sanatorium.jp</p>
+    <p style="background:#eee; padding:4px; font-family:monospace;">morichka.mail@gmail.com</p>
   </div>
 </div>
 
@@ -458,7 +426,7 @@
     <ul class="news-list">
       <li class="news-item">
         <div class="news-date">2026.10.18</div>
-        <a href="diary.html" class="news-title-link">【お知らせ】Webサイト「湘南サナトリウムの病室」開設のお知らせ</a>
+        <a href="diary.html" class="news-title-link">【お知らせ】Webサイト「湘南サナトリウム」開設のお知らせ</a>
       </li>
     </ul>
   </div>
@@ -468,7 +436,6 @@
 <div class="taskbar">
   <div class="taskbar-left">
     <button class="task-btn" onclick="showWin('win1')">Main</button>
-    <!-- ダイレクトに diary.html へ飛ぶボタンに変更 -->
     <a href="diary.html" class="task-btn">📖 Diary (日記)</a>
     <button class="task-btn" onclick="showWin('win3')">Links/Contact</button>
     <button class="task-btn" onclick="showWin('win4')">News</button>
@@ -477,6 +444,43 @@
 </div>
 
 <script>
+  // █ JavaScriptで diary.html を自動で読み込んで最新の日記をプレビュー表示する処理
+  fetch('diary.html')
+    .then(response => response.text())
+    .then(data => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data, 'text/html');
+      
+      // diary.html の一番上の記事を取得
+      const latestEntry = doc.querySelector('.entry');
+      
+      if (latestEntry) {
+        const date = latestEntry.querySelector('.entry-date')?.innerText || '';
+        const title = latestEntry.querySelector('.entry-title')?.innerText || '';
+        let content = latestEntry.querySelector('.entry-content')?.innerText || '';
+        
+        // 本文を50文字にカットしてプレビュー風にする
+        if (content.length > 50) {
+          content = content.substring(0, 50) + '...';
+        }
+
+        // トップページのプレビュー枠に流し込む
+        document.getElementById('diary-preview').innerHTML = `
+          <div style="margin-bottom: 8px;">
+            <div style="font-size:11px; color:#888;">${date}</div>
+            <a href="diary.html" class="news-title-link">${title}</a>
+            <p style="margin: 4px 0; font-size:12px; line-height:1.4;">${content}</p>
+            <a href="diary.html" style="color:#0000ff; font-weight:bold; font-size:11px;">👉 全文を読む (diary.html)</a>
+          </div>
+        `;
+      }
+    })
+    .catch(err => {
+      document.getElementById('diary-preview').innerHTML = `
+        <p style="font-size:12px;">最新の日記は <a href="diary.html" style="color:#0000ff;">diary.html</a> から確認できます。</p>
+      `;
+    });
+
   // アクセスカウンター
   let count = localStorage.getItem('visit_count');
   if (!count) { count = 127; } else { count = parseInt(count) + 1; }
