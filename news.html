@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEWS - 湘南サナトリウム</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 20px 10px 60px 10px;
+    background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+    font-family: 'DotGothic16', monospace, sans-serif;
+    color: #333;
+    min-height: 100vh;
+  }
+  .bg-pattern {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 0);
+    background-size: 16px 16px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 10;
+  }
+  .window-header {
+    background: linear-gradient(90deg, #ffb6c1, #ff69b4);
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: #000;
+    font-size: 14px;
+  }
+  .back-btn {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 2px 8px;
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .back-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+  .window-body {
+    padding: 16px;
+    background: #fff;
+    margin: 4px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+  .news-detail-title {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .news-detail-date {
+    color: #666;
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+  .news-detail-img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #808080;
+    margin-bottom: 12px;
+  }
+  .news-detail-body {
+    font-size: 13px;
+    line-height: 1.8;
+    background: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  /* Prev / Next & VIEW ALL */
+  .entry-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .entry-nav a {
+    color: #0000ff;
+    text-decoration: none;
+  }
+  .footer-nav {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .view-all-btn {
+    display: block;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 6px 0;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: 1px 1px 0px #000;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  .view-all-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-pattern"></div>
+
+<div class="container">
+  <div class="window-header">
+    <span>NEWS - 湘南サナトリウム</span>
+    <a href="index.html" class="back-btn">トップへ戻る</a>
+  </div>
+  <div class="window-body">
+
+    <div class="news-detail-title">【お知らせ】Webサイト「湘南サナトリウム」開設のお知らせ</div>
+    <div class="news-detail-date">2026.10.18</div>
+    
+    <!-- 画像枠（好きな画像URLに差し替えてね） -->
+    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" class="news-detail-img" alt="news-img">
+    
+    <div class="news-detail-body">
+      「湘南サナトリウム」へようこそ。<br><br>
+      本日より公式Webサイトをオープンいたしました。<br>
+      ここでは日常の日記や好きな本、語学の雑記帳などを静かに公開していきます。<br><br>
+      相互リンクや一言メッセージ（WEB拍手）もお待ちしております。
+    </div>
+
+    <!-- Prev / Next ナビ -->
+    <div class="entry-nav">
+      <span style="color:#aaa;">← Prev</span>
+      <span style="color:#aaa;">Next →</span>
+    </div>
+
+    <!-- VIEW ALL ボタン -->
+    <div class="footer-nav">
+      <a href="index.html" class="view-all-btn">VIEW ALL</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
