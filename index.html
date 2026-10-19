@@ -98,6 +98,11 @@
     color: #fff;
   }
 
+  .window-header.cyan {
+    background: linear-gradient(90deg, #00ced1, #00bfff);
+    color: #000;
+  }
+
   .close-btn {
     background: #c0c0c0;
     border: 1px solid;
@@ -298,13 +303,18 @@
   #win2 { top: 120px; left: 360px; }
   #win3 { top: 460px; left: 15px; }
   #win4 { top: 480px; left: 360px; }
+  #win-notes { top: 100px; left: 705px; }
 
+  @media (max-width: 1050px) {
+    #win-notes { top: 850px; left: 10px; }
+  }
   @media (max-width: 720px) {
     .window { width: 300px; }
     #win1 { top: 60px; left: 10px; }
     #win2 { top: 450px; left: 10px; }
     #win3 { top: 820px; left: 10px; }
     #win4 { top: 1200px; left: 10px; }
+    #win-notes { top: 1570px; left: 10px; }
   }
 </style>
 </head>
@@ -314,12 +324,20 @@
 
 <div class="site-logo">湘南サナトリウム</div>
 
-<div class="header-sns">
-  <a href="#" class="sns-btn">X</a>
-  <a href="#" class="sns-btn">TikTok</a>
-  <a href="#" class="sns-btn">YouTube</a>
-  <a href="#" class="sns-btn">Instagram</a>
+ <div class="header-sns">
+  <!-- X（旧Twitter）のURLを入れる場合 -->
+  <a href="https://twitter.com/M4YVK0" target="_blank" rel="noopener noreferrer" class="sns-btn">X</a>
+  
+  <!-- ReadsのURLを入れる場合 -->
+  <a href="https://reads.jp/nanochka" target="_blank" rel="noopener noreferrer" class="sns-btn">Reads</a>
+  
+  <!-- BlueskyのURLを入れる場合 -->
+  <a href="https://bsky.app/profile/nanochka.bsky.social" target="_blank" rel="noopener noreferrer" class="sns-btn">Bluesky</a>
+  
+  <!-- InstagramのURLを入れる場合 -->
+  <a href="https://www.instagram.com/mayuko._.sasaki/" target="_blank" rel="noopener noreferrer" class="sns-btn">Instagram</a>
 </div>
+
 
 <!-- ウィンドウ 1: MAIN -->
 <div class="window" id="win1">
@@ -330,9 +348,9 @@
   <div class="window-body">
     <div class="profile-name">管理人：佐々木繭子</div>
     <div class="counter-box">
-      あなたは <span class="counter-num" id="counter">000127</span> 人目の患者です
+      あなたは <span class="counter-num" id="counter">000007</span> 人目の患者です
     </div>
-    <img src="fxn 2026-10-17 112132A302E5376853.jpeg" alt="official" class="main-img">
+    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="official" class="main-img">
     <marquee>湘南サナトリウムの病室へようこそ……ゆっくりしていってね</marquee>
     
     <div class="clap-box">
@@ -343,7 +361,7 @@
   </div>
 </div>
 
-<!-- ウィンドウ 2: MEMORANDUM -->
+<!-- ウィンドウ 2: MEMORANDUM (日記) -->
 <div class="window" id="win2">
   <div class="window-header green" onmousedown="dragStart(event, 'win2')" touchstart="dragStart(event, 'win2')">
     <span>MEMORANDUM [Profile/Diary/Books]</span>
@@ -356,23 +374,20 @@
       <button class="tab-btn" onclick="switchTab('tab-books', this)">読んだ本</button>
     </div>
 
-    <!-- タブ1: 自己紹介 -->
     <div class="tab-content active" id="tab-profile">
       <p><b>名前:</b> 佐々木繭子</p>
       <p><b>生年月日:</b> 3月5日</p>
-      <p><b>好きなもの:</b> 近代日本文学、旧制高校、外国語、水族館、プラネタリウム</p>
-      <p><b>趣味:</b> 読書、語学学習、古書店巡り、純喫茶巡り、文房具・紙モノ集め</p>
-      <p><b>一言:</b> バーチャルナースです。湘南サナトリウムでひっそり暮らしています。</p>
+      <p><b>好きなもの:</b> 近代日本文学、プラネタリウム、水族館</p>
+      <p><b>趣味:</b> 読書、語学学習、文通、古書店巡り、純喫茶巡り、文房具・紙モノ集め</p>
+      <p><b>一言:</b> バーチャル湘南サナトリウムの病室でひっそり暮らしています。</p>
     </div>
 
-    <!-- タブ2: 日記 (JavaScriptで diary.html から自動で読み込んで差し替えます) -->
     <div class="tab-content" id="tab-diary">
       <div id="diary-preview">
         <p style="color:#888; font-size:11px;">最新の日記を読み込み中...</p>
       </div>
     </div>
 
-    <!-- タブ3: 読んだ本 -->
     <div class="tab-content" id="tab-books">
       <ul>
         <li>『檸檬』梶井基次郎</li>
@@ -384,7 +399,7 @@
   </div>
 </div>
 
-<!-- ウィンドウ 3: LINKS / MUSIC / CONTACT -->
+<!-- ウィンドウ 3: LINKS / CONTACT -->
 <div class="window" id="win3">
   <div class="window-header blue" onmousedown="dragStart(event, 'win3')" touchstart="dragStart(event, 'win3')">
     <span>LINKS & CONTACT</span>
@@ -400,23 +415,23 @@
 
     <p><b>🎧 お気に入り曲 (Favorite Music)</b></p>
     <ul style="padding-left: 20px; margin: 0;">
-      <li>YUKIKA - NEON</li>
-      <li>LE SSERAFIM - Perfect Night</li>
-      <li>KATSEYE - Internet Girl</li>
-      <li>IVE - In Your Heart(REI Solo)</li>
-      <li>ILLIT - Tick-Tack</li>
       <li>NewJeans - New Jeans</li>
+      <li>ILLIT - Magnetic</li>
+      <li>IVE - In Your Heart(REI Solo)</li>
+      <li>KATSEYE - Internet Girl</li>
+      <li>LE SSERAFIM - Perfect Night</li>
+      <li>YUKIKA - NEON</li>
     </ul>
 
     <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
 
     <p><b>✉️ 連絡先 (Contact)</b></p>
     <p>お仕事・相互リンクの依頼・メッセージはSNSのDM、または下記アドレスまで。</p>
-    <p style="background:#eee; padding:4px; font-family:monospace;">morichka.mail@gmail.com</p>
+    <p style="background:#eee; padding:4px; font-family:monospace;">morichka.mail@gmail.com/p>
   </div>
 </div>
 
-<!-- ウィンドウ 4: NEWS一覧 -->
+<!-- ウィンドウ 4: NEWS -->
 <div class="window" id="win4">
   <div class="window-header" onmousedown="dragStart(event, 'win4')" touchstart="dragStart(event, 'win4')">
     <span>NEWS</span>
@@ -426,9 +441,22 @@
     <ul class="news-list">
       <li class="news-item">
         <div class="news-date">2026.10.18</div>
-        <a href="diary.html" class="news-title-link">【お知らせ】Webサイト「湘南サナトリウム」開設のお知らせ</a>
+        <a href="diary.html" class="news-title-link">【お知らせ】Webサイト開設のお知らせ</a>
       </li>
     </ul>
+  </div>
+</div>
+
+<!-- ウィンドウ 5: NOTES (水色ヘッダーの雑記帳。自動プレビュー対応！) -->
+<div class="window" id="win-notes">
+  <div class="window-header cyan" onmousedown="dragStart(event, 'win-notes')" touchstart="dragStart(event, 'win-notes')">
+    <span>MEMO: 語学の雑記帳</span>
+    <div class="close-btn" onclick="closeWin('win-notes')">✕</div>
+  </div>
+  <div class="window-body">
+    <div id="notes-preview">
+      <p style="color:#888; font-size:11px;">最新の雑記を読み込み中...</p>
+    </div>
   </div>
 </div>
 
@@ -436,22 +464,21 @@
 <div class="taskbar">
   <div class="taskbar-left">
     <button class="task-btn" onclick="showWin('win1')">Main</button>
-    <a href="diary.html" class="task-btn">📖 Diary (日記)</a>
-    <button class="task-btn" onclick="showWin('win3')">Links/Contact</button>
+    <a href="diary.html" class="task-btn">📖 Diary</a>
+    <button class="task-btn" onclick="showWin('win-notes')">Notes</button>
+    <button class="task-btn" onclick="showWin('win3')">Links</button>
     <button class="task-btn" onclick="showWin('win4')">News</button>
   </div>
   <div class="clock-box" id="clock">Tokyo 00:00:00</div>
 </div>
 
 <script>
-  // █ JavaScriptで diary.html を自動で読み込んで最新の日記をプレビュー表示する処理
+  // 1. 日記の自動プレビュー読み込み (diary.html)
   fetch('diary.html')
     .then(response => response.text())
     .then(data => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(data, 'text/html');
-      
-      // diary.html の一番上の記事を取得
       const latestEntry = doc.querySelector('.entry');
       
       if (latestEntry) {
@@ -459,12 +486,10 @@
         const title = latestEntry.querySelector('.entry-title')?.innerText || '';
         let content = latestEntry.querySelector('.entry-content')?.innerText || '';
         
-        // 本文を50文字にカットしてプレビュー風にする
         if (content.length > 50) {
           content = content.substring(0, 50) + '...';
         }
 
-        // トップページのプレビュー枠に流し込む
         document.getElementById('diary-preview').innerHTML = `
           <div style="margin-bottom: 8px;">
             <div style="font-size:11px; color:#888;">${date}</div>
@@ -476,9 +501,38 @@
       }
     })
     .catch(err => {
-      document.getElementById('diary-preview').innerHTML = `
-        <p style="font-size:12px;">最新の日記は <a href="diary.html" style="color:#0000ff;">diary.html</a> から確認できます。</p>
-      `;
+      document.getElementById('diary-preview').innerHTML = `<p style="font-size:12px;">日記の読み込みに失敗しました。</p>`;
+    });
+
+  // 2. 語学の雑記帳の自動プレビュー読み込み (notes.html)
+  fetch('notes.html')
+    .then(response => response.text())
+    .then(data => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data, 'text/html');
+      const latestNote = doc.querySelector('.entry');
+      
+      if (latestNote) {
+        const date = latestNote.querySelector('.entry-date')?.innerText || '';
+        const title = latestNote.querySelector('.entry-title')?.innerText || '';
+        let content = latestNote.querySelector('.entry-content')?.innerText || '';
+        
+        if (content.length > 50) {
+          content = content.substring(0, 50) + '...';
+        }
+
+        document.getElementById('notes-preview').innerHTML = `
+          <div style="margin-bottom: 8px;">
+            <div style="font-size:11px; color:#888;">${date}</div>
+            <a href="notes.html" class="news-title-link">${title}</a>
+            <p style="margin: 4px 0; font-size:12px; line-height:1.4;">${content}</p>
+            <a href="notes.html" style="color:#008b8b; font-weight:bold; font-size:11px;">👉 雑記帳の続きを読む (notes.html)</a>
+          </div>
+        `;
+      }
+    })
+    .catch(err => {
+      document.getElementById('notes-preview').innerHTML = `<p style="font-size:12px;">雑記帳の読み込みに失敗しました。</p>`;
     });
 
   // アクセスカウンター
@@ -569,3 +623,4 @@
 
 </body>
 </html>
+
